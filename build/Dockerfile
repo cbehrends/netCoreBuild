@@ -1,8 +1,8 @@
 # this is the jenkins version, to upgrade the base image, alter the argument below
-ARG JENKINS_VERSION=2.60.3
+ARG JENKINS_VERSION=2.89.3
 FROM jenkins:$JENKINS_VERSION
-LABEL name "netcorebuild"
-MAINTAINER Maarten Merken
+LABEL name "loadorg_jenkins"
+MAINTAINER Corey behrends
 
 ARG NET_CORE_APP_NAME=netcoreapp
 ARG JENKINS_CLI_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/cli/$JENKINS_VERSION/cli-$JENKINS_VERSION-jar-with-dependencies.jar
@@ -23,7 +23,7 @@ RUN mkdir -p "$JENKINS_HOME"/jobs/"$NET_CORE_APP_NAME"
 COPY "$NET_CORE_APP_NAME".xml "$JENKINS_HOME"/jobs/"$NET_CORE_APP_NAME"/config.xml
 
 # setup netcore environment
-ENV DOTNET_SDK_VERSION 2.0.0
+ENV DOTNET_SDK_VERSION 2.0.2
 ENV DOTNET_SDK_DOWNLOAD_URL https://dotnetcli.blob.core.windows.net/dotnet/Sdk/$DOTNET_SDK_VERSION/dotnet-sdk-$DOTNET_SDK_VERSION-linux-x64.tar.gz
 ENV DOTNET_SDK_DOWNLOAD_SHA E457F3A5685382F7F24851A2E76EDBE75B575948C8A7F43220F159BA29C329A5008BBE7220C18DFB31EAF0398FC72177B1948B65E19B34ED0D907EFB459CF4B0
 
